@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📅 Sistema de Reservas - Agendar Cita</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">📅 Sistema de Reservas</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Agendar Cita</a>
+                <a href="admin.html" class="nav-link">Panel Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>🏥 Agenda tu Cita Médica</h1>
+            <p>Reserva tu consulta de forma rápida y sencilla</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+        <div class="booking-wrapper">
+            <!-- PASO 1: SELECCIONAR CENTRO Y ESPECIALISTA -->
+            <div class="booking-section active" id="step-1">
+                <h2>Paso 1: Selecciona Centro Médico y Especialista</h2>
+
+                <div class="medical-form">
+                    <div class="form-group">
+                        <label for="center">🏥 Centro Médico *</label>
+                        <select id="center" required onchange="updateBooking()">
+                            <option value="">Selecciona un centro</option>
+                            <option value="Centro Médico" data-price="80">Centro Médico</option>
+                            <option value="Centro Médico Av Plaza" data-price="80">Centro Médico Av Plaza</option>
+                            <option value="Centro Médico Howarts" data-price="80">Centro Médico Howarts</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialist">👨‍⚕️ Especialista *</label>
+                        <select id="specialist" required onchange="updateBooking()">
+                            <option value="">Selecciona especialista</option>
+                            <option value="Oftalmología" data-price="85">Oftalmología</option>
+                            <option value="Neurología" data-price="95">Neurología</option>
+                            <option value="Odontología" data-price="75">Odontología</option>
+                            <option value="Pediatría" data-price="70">Pediatría</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-large" id="btn-next-1" disabled>Continuar →</button>
+            </div>
+
+            <!-- PASO 2: SELECCIONAR FECHA Y HORA -->
+            <div class="booking-section" id="step-2">
+                <h2>Paso 2: Selecciona Fecha y Hora</h2>
+
+                <div class="date-time-container">
+                    <!-- CALENDARIO -->
+                    <div class="calendar-section">
+                        <h3>📅 Fecha</h3>
+                        <div class="calendar-header">
+                            <button id="prev-month">◀</button>
+                            <span id="month-year"></span>
+                            <button id="next-month">▶</button>
+                        </div>
+                        <div class="calendar-grid" id="calendar"></div>
+                    </div>
+
+                    <!-- HORARIOS -->
+                    <div class="times-section">
+                        <h3>⏰ Horarios Disponibles</h3>
+                        <div class="times-grid" id="times-grid">
+                            <p class="placeholder">Selecciona una fecha primero</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="btn-back-2">← Atrás</button>
+                    <button class="btn btn-primary" id="btn-next-2" disabled>Continuar →</button>
+                </div>
+            </div>
+
+            <!-- PASO 3: DATOS PERSONALES -->
+            <div class="booking-section" id="step-3">
+                <h2>Paso 3: Tus Datos</h2>
+
+                <form class="booking-form" id="booking-form">
+                    <div class="form-group">
+                        <label for="name">Ingresa tu nombre y apellido</label>
+                        <input type="text" id="name" placeholder="Nombre y apellido" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Ingresa tu email</label>
+                            <input type="email" id="email" placeholder="tu@correo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" placeholder="9 1234 5678" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notas Especiales</label>
+                        <textarea id="notes" placeholder="Cuéntanos algo especial (alergias, preferencias, etc.)"></textarea>
+                    </div>
+
+                    <div class="whatsapp-section">
+                        <button type="button" class="btn btn-whatsapp" id="btn-whatsapp-confirm">
+                            💬 Confirmar por WhatsApp
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" class="checkbox-label">Acepto los términos y condiciones</label>
+                    </div>
+                </form>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="btn-back-3">← Atrás</button>
+                    <button class="btn btn-primary btn-large" id="btn-confirm">Confirmar Cita ✓</button>
+                </div>
+            </div>
+
+            <!-- CONFIRMACIÓN -->
+            <div class="booking-section" id="step-4">
+                <div class="confirmation">
+                    <div class="success-icon">✓</div>
+                    <h2>¡Reserva Confirmada!</h2>
+                    <p>Tu cita ha sido agendada exitosamente.</p>
+
+                    <div class="confirmation-details">
+                        <div class="detail-row">
+                            <span>Servicio:</span>
+                            <strong id="conf-service"></strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Fecha:</span>
+                            <strong id="conf-date"></strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Hora:</span>
+                            <strong id="conf-time"></strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Nombre:</span>
+                            <strong id="conf-name"></strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Email:</span>
+                            <strong id="conf-email"></strong>
+                        </div>
+                    </div>
+
+                    <div class="confirmation-code">
+                        <p>Código de confirmación:</p>
+                        <div class="code-box" id="conf-code"></div>
+                    </div>
+
+                    <p class="confirmation-message">
+                        📧 Se envió un correo de confirmación a <strong id="conf-email-display"></strong>
+                    </p>
+
+                    <button class="btn btn-primary btn-large" onclick="location.reload()">Nueva Reserva</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESUMEN FLOTANTE -->
+        <aside class="booking-summary" id="summary">
+            <h3>📋 Resumen</h3>
+            <div class="summary-item">
+                <span>Especialista:</span>
+                <strong id="summary-service">-</strong>
+            </div>
+            <div class="summary-item">
+                <span>Precio:</span>
+                <strong id="summary-price">$0</strong>
+            </div>
+            <div class="summary-item">
+                <span>Fecha:</span>
+                <strong id="summary-date">-</strong>
+            </div>
+            <div class="summary-item">
+                <span>Hora:</span>
+                <strong id="summary-time">-</strong>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-item total">
+                <span>Total:</span>
+                <strong id="summary-total">$0</strong>
+            </div>
+        </aside>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>📅 Sistema de Reservas © 2026 | Agendar Citas Fácilmente</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
