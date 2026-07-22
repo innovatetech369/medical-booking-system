@@ -1,3 +1,6 @@
+// ===== EMAILJS INITIALIZATION =====
+emailjs.init('L1GjAQjK8Npc3nPnq');
+
 // ===== SECURITY FUNCTIONS =====
 function sanitizeInput(input) {
     if (typeof input !== 'string') return '';
