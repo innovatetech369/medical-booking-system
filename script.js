@@ -1,11 +1,3 @@
-// ===== EMAILJS INITIALIZATION =====
-if (typeof emailjs !== 'undefined') {
-    emailjs.init('L1GjAQJK8Npc3nPnq');
-    console.log('✅ EmailJS initialized');
-} else {
-    console.error('❌ EmailJS library not loaded');
-}
-
 // ===== STATE GLOBAL =====
 let bookingState = {
     center: null,
@@ -382,10 +374,11 @@ function sendConfirmationEmail(reservation) {
 
     emailjs.send('service_vyagmxd', 'template_6zkb959', templateParams)
         .then(function(response) {
-            console.log('✅ Email sent successfully:', response);
+            console.log('✅ Email sent successfully:', response.status, response.text);
             alert('✅ Confirmation email sent to ' + reservation.email);
-        }, function(error) {
-            console.log('❌ Error sending email:', error);
+        })
+        .catch(function(error) {
+            console.error('❌ Error sending email:', error);
             alert('⚠️ Appointment confirmed but there was an error sending the email. You can check it later.');
         });
 }
