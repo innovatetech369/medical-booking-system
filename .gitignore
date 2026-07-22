@@ -4,6 +4,7 @@
 .env.*.local
 secrets.json
 credentials.json
+config.js
 *.pem
 *.key
 
