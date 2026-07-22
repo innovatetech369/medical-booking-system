@@ -70,14 +70,16 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    background: linear-gradient(135deg, rgba(33, 150, 243, 0.7) 0%, rgba(65, 105, 225, 0.7) 100%),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23E8F4F8" width="1200" height="600"/><g fill="%23D4E6F1" opacity="0.3"><rect x="0" y="0" width="200" height="200" rx="20"/><rect x="500" y="100" width="300" height="300" rx="15"/><rect x="1000" y="200" width="200" height="250" rx="20"/></g></svg>');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%),
+                url('hospital-bg.jpg') center/cover no-repeat;
     color: white;
     padding: 80px 20px;
     text-align: center;
     position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-overlay {
