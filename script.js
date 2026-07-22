@@ -80,21 +80,29 @@ function attachEventListeners() {
 }
 
 function validateStep1() {
-    const center = document.getElementById('center').value;
-    const specialist = document.getElementById('specialist').value;
+    const centerElement = document.getElementById('center');
+    const specialistElement = document.getElementById('specialist');
+    const button = document.getElementById('btn-next-1');
+
+    const center = centerElement.value;
+    const specialist = specialistElement.value;
+
+    console.log('Validando Step 1:', { center, specialist });
 
     if (center && specialist) {
         bookingState.center = center;
         bookingState.specialist = specialist;
 
         // Obtener precio del specialist
-        const specialistOption = document.getElementById('specialist').selectedOptions[0];
-        bookingState.price = parseFloat(specialistOption.dataset.price) || 80;
+        const selectedOption = specialistElement.options[specialistElement.selectedIndex];
+        bookingState.price = parseFloat(selectedOption.dataset.price) || 80;
 
+        console.log('Step 1 válido:', bookingState);
         updateSummary();
-        document.getElementById('btn-next-1').disabled = false;
+        button.disabled = false;
     } else {
-        document.getElementById('btn-next-1').disabled = true;
+        console.log('Step 1 incompleto');
+        button.disabled = true;
     }
 }
 
