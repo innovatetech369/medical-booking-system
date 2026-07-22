@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📅 Sistema de Reservas - Agendar Cita</title>
+    <title>📅 Medical Booking System - Book Appointment</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,8 +20,8 @@
             </div>
             <div class="logo"></div>
             <div class="nav-links">
-                <a href="#" onclick="openTelemedicina(); return false;" class="nav-link">Telemedicina</a>
-                <a href="#" onclick="showMyBookings(); return false;" class="nav-link">Mis Agendados</a>
+                <a href="#" onclick="openTelemedicina(); return false;" class="nav-link">Telemedicine</a>
+                <a href="#" onclick="showMyBookings(); return false;" class="nav-link">My Bookings</a>
             </div>
         </div>
     </nav>
@@ -30,52 +30,52 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>🏥 Agenda tu Cita Médica</h1>
-            <p>Reserva tu consulta de forma rápida y sencilla</p>
+            <h1>🏥 Book Your Medical Appointment</h1>
+            <p>Schedule your consultation quickly and easily</p>
         </div>
     </section>
 
     <!-- MAIN CONTAINER -->
     <main class="container">
         <div class="booking-wrapper">
-            <!-- PASO 1: SELECCIONAR CENTRO Y ESPECIALISTA -->
+            <!-- STEP 1: SELECT CENTER AND SPECIALIST -->
             <div class="booking-section active" id="step-1">
-                <h2>Paso 1: Selecciona Centro Médico y Especialista</h2>
+                <h2>Step 1: Select Medical Center and Specialist</h2>
 
                 <div class="medical-form">
                     <div class="form-group">
-                        <label for="center">🏥 Centro Médico *</label>
+                        <label for="center">🏥 Medical Center *</label>
                         <select id="center" required onchange="validateStep1()">
-                            <option value="">Selecciona un centro</option>
-                            <option value="Centro Médico" data-price="80">Centro Médico</option>
-                            <option value="Centro Médico Av Plaza" data-price="80">Centro Médico Av Plaza</option>
-                            <option value="Centro Médico Howarts" data-price="80">Centro Médico Howarts</option>
+                            <option value="">Select a center</option>
+                            <option value="Medical Center" data-price="80">Medical Center</option>
+                            <option value="Medical Center Av Plaza" data-price="80">Medical Center Av Plaza</option>
+                            <option value="Medical Center Hogwarts" data-price="80">Medical Center Hogwarts</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="specialist">👨‍⚕️ Especialista *</label>
+                        <label for="specialist">👨‍⚕️ Specialist *</label>
                         <select id="specialist" required onchange="validateStep1()">
-                            <option value="">Selecciona especialista</option>
-                            <option value="Oftalmología" data-price="85">Oftalmología</option>
-                            <option value="Neurología" data-price="95">Neurología</option>
-                            <option value="Odontología" data-price="75">Odontología</option>
-                            <option value="Pediatría" data-price="70">Pediatría</option>
+                            <option value="">Select specialist</option>
+                            <option value="Ophthalmology" data-price="85">Ophthalmology</option>
+                            <option value="Neurology" data-price="95">Neurology</option>
+                            <option value="Dentistry" data-price="75">Dentistry</option>
+                            <option value="Pediatrics" data-price="70">Pediatrics</option>
                         </select>
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-large" id="btn-next-1" disabled>Continuar →</button>
+                <button class="btn btn-primary btn-large" id="btn-next-1" disabled>Continue →</button>
             </div>
 
-            <!-- PASO 2: SELECCIONAR FECHA Y HORA -->
+            <!-- STEP 2: SELECT DATE AND TIME -->
             <div class="booking-section" id="step-2">
-                <h2>Paso 2: Selecciona Fecha y Hora</h2>
+                <h2>Step 2: Select Date and Time</h2>
 
                 <div class="date-time-container">
-                    <!-- CALENDARIO -->
+                    <!-- CALENDAR -->
                     <div class="calendar-section">
-                        <h3>📅 Fecha</h3>
+                        <h3>📅 Date</h3>
                         <div class="calendar-header">
                             <button id="prev-month">◀</button>
                             <span id="month-year"></span>
@@ -84,88 +84,88 @@
                         <div class="calendar-grid" id="calendar"></div>
                     </div>
 
-                    <!-- HORARIOS -->
+                    <!-- AVAILABLE TIMES -->
                     <div class="times-section">
-                        <h3>⏰ Horarios Disponibles</h3>
+                        <h3>⏰ Available Times</h3>
                         <div class="times-grid" id="times-grid">
-                            <p class="placeholder">Selecciona una fecha primero</p>
+                            <p class="placeholder">Select a date first</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="button-group">
-                    <button class="btn btn-secondary" id="btn-back-2">← Atrás</button>
-                    <button class="btn btn-primary" id="btn-next-2" disabled>Continuar →</button>
+                    <button class="btn btn-secondary" id="btn-back-2">← Back</button>
+                    <button class="btn btn-primary" id="btn-next-2" disabled>Continue →</button>
                 </div>
             </div>
 
-            <!-- PASO 3: DATOS PERSONALES -->
+            <!-- STEP 3: PERSONAL DATA -->
             <div class="booking-section" id="step-3">
-                <h2>Paso 3: Tus Datos</h2>
+                <h2>Step 3: Your Information</h2>
 
                 <form class="booking-form" id="booking-form">
                     <div class="form-group">
-                        <label for="name">Ingresa tu nombre y apellido</label>
-                        <input type="text" id="name" placeholder="Nombre y apellido" required>
+                        <label for="name">Enter your full name</label>
+                        <input type="text" id="name" placeholder="Full name" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="email">Ingresa tu email</label>
-                            <input type="email" id="email" placeholder="tu@correo.com" required>
+                            <label for="email">Enter your email</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="phone">Teléfono</label>
-                            <input type="tel" id="phone" placeholder="9 1234 5678" required>
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" placeholder="+1 234 567 8900" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="notes">Notas Especiales</label>
-                        <textarea id="notes" placeholder="Cuéntanos algo especial (alergias, preferencias, etc.)"></textarea>
+                        <label for="notes">Special Notes</label>
+                        <textarea id="notes" placeholder="Tell us something special (allergies, preferences, etc.)"></textarea>
                     </div>
 
                     <div class="whatsapp-section">
                         <button type="button" class="btn btn-whatsapp" id="btn-whatsapp-confirm">
-                            💬 Confirmar por WhatsApp
+                            💬 Confirm via WhatsApp
                         </button>
                     </div>
 
                     <div class="form-group">
                         <input type="checkbox" id="terms" required>
-                        <label for="terms" class="checkbox-label">Acepto los términos y condiciones</label>
+                        <label for="terms" class="checkbox-label">I accept the terms and conditions</label>
                     </div>
                 </form>
 
                 <div class="button-group">
-                    <button class="btn btn-secondary" id="btn-back-3">← Atrás</button>
-                    <button class="btn btn-primary btn-large" id="btn-confirm">Confirmar Cita ✓</button>
+                    <button class="btn btn-secondary" id="btn-back-3">← Back</button>
+                    <button class="btn btn-primary btn-large" id="btn-confirm">Confirm Appointment ✓</button>
                 </div>
             </div>
 
-            <!-- CONFIRMACIÓN -->
+            <!-- CONFIRMATION -->
             <div class="booking-section" id="step-4">
                 <div class="confirmation">
                     <div class="success-icon">✓</div>
-                    <h2>¡Reserva Confirmada!</h2>
-                    <p>Tu cita ha sido agendada exitosamente.</p>
+                    <h2>Appointment Confirmed!</h2>
+                    <p>Your appointment has been successfully scheduled.</p>
 
                     <div class="confirmation-details">
                         <div class="detail-row">
-                            <span>Servicio:</span>
+                            <span>Specialist:</span>
                             <strong id="conf-service"></strong>
                         </div>
                         <div class="detail-row">
-                            <span>Fecha:</span>
+                            <span>Date:</span>
                             <strong id="conf-date"></strong>
                         </div>
                         <div class="detail-row">
-                            <span>Hora:</span>
+                            <span>Time:</span>
                             <strong id="conf-time"></strong>
                         </div>
                         <div class="detail-row">
-                            <span>Nombre:</span>
+                            <span>Name:</span>
                             <strong id="conf-name"></strong>
                         </div>
                         <div class="detail-row">
@@ -175,98 +175,98 @@
                     </div>
 
                     <div class="confirmation-code">
-                        <p>Código de confirmación:</p>
+                        <p>Confirmation Code:</p>
                         <div class="code-box" id="conf-code"></div>
                     </div>
 
                     <p class="confirmation-message">
-                        📧 Se envió un correo de confirmación a <strong id="conf-email-display"></strong>
+                        📧 A confirmation email has been sent to <strong id="conf-email-display"></strong>
                     </p>
 
-                    <button class="btn btn-primary btn-large" onclick="location.reload()">Nueva Reserva</button>
+                    <button class="btn btn-primary btn-large" onclick="location.reload()">New Booking</button>
                 </div>
             </div>
         </div>
 
-        <!-- HORARIOS -->
+        <!-- OPENING HOURS -->
         <aside class="booking-summary" id="summary">
-            <h3>⏰ Nuestros Horarios</h3>
+            <h3>⏰ Our Hours</h3>
             <div class="hours-container">
                 <div class="hours-item">
-                    <strong>Lunes - Viernes:</strong>
-                    <span>9:00 - 21:00</span>
+                    <strong>Monday - Friday:</strong>
+                    <span>9:00 AM - 9:00 PM</span>
                 </div>
                 <div class="hours-item">
-                    <strong>Sábado:</strong>
-                    <span>9:00 - 15:00</span>
+                    <strong>Saturday:</strong>
+                    <span>9:00 AM - 3:00 PM</span>
                 </div>
                 <div class="hours-item">
-                    <strong>Domingo:</strong>
-                    <span>Cerrado</span>
+                    <strong>Sunday:</strong>
+                    <span>Closed</span>
                 </div>
             </div>
         </aside>
     </main>
 
-        <!-- SECCIÓN DOCTORES -->
+        <!-- DOCTORS SECTION -->
         <section class="doctors-section">
-            <h2>👨‍⚕️ Nuestros Doctores</h2>
-            <p class="section-subtitle">Conoce a nuestro equipo de especialistas médicos</p>
+            <h2>👨‍⚕️ Our Doctors</h2>
+            <p class="section-subtitle">Meet our team of medical specialists</p>
 
             <div class="doctors-grid">
-                <!-- Oftalmología -->
+                <!-- Ophthalmology -->
                 <div class="doctor-card">
                     <div class="doctor-image">
                         <img src="James Smith.png" alt="Dr. James Smith">
                     </div>
                     <div class="doctor-info">
                         <h3>Dr. James Smith</h3>
-                        <p class="specialty">👁️ Oftalmología</p>
-                        <p class="experience">15 años de experiencia</p>
-                        <p class="details">Especialista en cirugía ocular y refractiva</p>
-                        <button class="btn btn-doctor" onclick="selectDoctorSpecialty('Oftalmología')">Reserva tu Hora</button>
+                        <p class="specialty">👁️ Ophthalmology</p>
+                        <p class="experience">15 years of experience</p>
+                        <p class="details">Specialist in eye surgery and refractive procedures</p>
+                        <button class="btn btn-doctor" onclick="selectDoctorSpecialty('Ophthalmology')">Book Appointment</button>
                     </div>
                 </div>
 
-                <!-- Neurología -->
+                <!-- Neurology -->
                 <div class="doctor-card">
                     <div class="doctor-image">
-                        <img src="Mary Williams.png" alt="Dra. Mary Williams">
+                        <img src="Mary Williams.png" alt="Dr. Mary Williams">
                     </div>
                     <div class="doctor-info">
-                        <h3>Dra. Mary Williams</h3>
-                        <p class="specialty">🧠 Neurología</p>
-                        <p class="experience">12 años de experiencia</p>
-                        <p class="details">Experta en trastornos neurológicos y migrañas</p>
-                        <button class="btn btn-doctor" onclick="selectDoctorSpecialty('Neurología')">Reserva tu Hora</button>
+                        <h3>Dr. Mary Williams</h3>
+                        <p class="specialty">🧠 Neurology</p>
+                        <p class="experience">12 years of experience</p>
+                        <p class="details">Expert in neurological disorders and migraines</p>
+                        <button class="btn btn-doctor" onclick="selectDoctorSpecialty('Neurology')">Book Appointment</button>
                     </div>
                 </div>
 
-                <!-- Odontología -->
+                <!-- Dentistry -->
                 <div class="doctor-card">
                     <div class="doctor-image">
                         <img src="Michael Johnson.png" alt="Dr. Michael Johnson">
                     </div>
                     <div class="doctor-info">
                         <h3>Dr. Michael Johnson</h3>
-                        <p class="specialty">🦷 Odontología</p>
-                        <p class="experience">18 años de experiencia</p>
-                        <p class="details">Especialista en implantes y ortodoncia</p>
-                        <button class="btn btn-doctor" onclick="selectDoctorSpecialty('Odontología')">Reserva tu Hora</button>
+                        <p class="specialty">🦷 Dentistry</p>
+                        <p class="experience">18 years of experience</p>
+                        <p class="details">Specialist in dental implants and orthodontics</p>
+                        <button class="btn btn-doctor" onclick="selectDoctorSpecialty('Dentistry')">Book Appointment</button>
                     </div>
                 </div>
 
-                <!-- Pediatría -->
+                <!-- Pediatrics -->
                 <div class="doctor-card">
                     <div class="doctor-image">
-                        <img src="Patricia Brown.png" alt="Dra. Patricia Brown">
+                        <img src="Patricia Brown.png" alt="Dr. Patricia Brown">
                     </div>
                     <div class="doctor-info">
-                        <h3>Dra. Patricia Brown</h3>
-                        <p class="specialty">👶 Pediatría</p>
-                        <p class="experience">14 años de experiencia</p>
-                        <p class="details">Médica pediatra con enfoque humanizado</p>
-                        <button class="btn btn-doctor" onclick="selectDoctorSpecialty('Pediatría')">Reserva tu Hora</button>
+                        <h3>Dr. Patricia Brown</h3>
+                        <p class="specialty">👶 Pediatrics</p>
+                        <p class="experience">14 years of experience</p>
+                        <p class="details">Pediatrician with a patient-centered approach</p>
+                        <button class="btn btn-doctor" onclick="selectDoctorSpecialty('Pediatrics')">Book Appointment</button>
                     </div>
                 </div>
             </div>
@@ -275,12 +275,12 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <p>🏥 Sistema de Reservas Médicas © 2026 | Agendar Citas Fácilmente</p>
+        <p>🏥 Medical Booking System © 2026 | Easy Online Appointment Scheduling</p>
     </footer>
 
     <script src="emailjs.min.js"></script>
     <script>
-        // Inicializar EmailJS con Public Key
+        // Initialize EmailJS with Public Key
         emailjs.init('L1GjAQJK8Npc3nPnq');
     </script>
     <script src="script.js"></script>

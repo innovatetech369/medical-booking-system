@@ -23,28 +23,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== FUNCIONES DEL NAVBAR =====
 function openTelemedicina() {
-    // Scroll a la sección de reserva
+    // Scroll to booking section
     document.getElementById('step-1').scrollIntoView({ behavior: 'smooth' });
     goToStep(1);
 }
 
 function showMyBookings() {
-    // Obtener reservas del localStorage
+    // Get bookings from localStorage
     const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
 
     if (reservations.length === 0) {
-        alert('No tienes citas agendadas aún.');
+        alert('You have no appointments scheduled yet.');
         return;
     }
 
-    // Crear lista de citas
-    let bookingsList = '📅 MIS CITAS AGENDADAS\n\n';
+    // Create bookings list
+    let bookingsList = '📅 MY APPOINTMENTS\n\n';
     reservations.forEach((res, index) => {
         bookingsList += `${index + 1}. ${res.specialist || res.service}\n`;
-        bookingsList += `   Fecha: ${res.date}\n`;
-        bookingsList += `   Hora: ${res.time}\n`;
-        bookingsList += `   Código: ${res.id}\n`;
-        bookingsList += `   Estado: ${res.status}\n\n`;
+        bookingsList += `   Date: ${res.date}\n`;
+        bookingsList += `   Time: ${res.time}\n`;
+        bookingsList += `   Code: ${res.id}\n`;
+        bookingsList += `   Status: ${res.status}\n\n`;
     });
 
     alert(bookingsList);
@@ -87,21 +87,21 @@ function validateStep1() {
     const center = centerElement.value;
     const specialist = specialistElement.value;
 
-    console.log('Validando Step 1:', { center, specialist });
+    console.log('Validating Step 1:', { center, specialist });
 
     if (center && specialist) {
         bookingState.center = center;
         bookingState.specialist = specialist;
 
-        // Obtener precio del specialist
+        // Get specialist price
         const selectedOption = specialistElement.options[specialistElement.selectedIndex];
         bookingState.price = parseFloat(selectedOption.dataset.price) || 80;
 
-        console.log('Step 1 válido:', bookingState);
+        console.log('Step 1 valid:', bookingState);
         updateSummary();
         button.disabled = false;
     } else {
-        console.log('Step 1 incompleto');
+        console.log('Step 1 incomplete');
         button.disabled = true;
     }
 }
@@ -285,7 +285,7 @@ function goToStep(step) {
 
 function validateStep2() {
     if (!bookingState.date || !bookingState.time) {
-        alert('Por favor selecciona fecha y hora');
+        alert('Please select a date and time');
         return false;
     }
     return true;
@@ -293,14 +293,14 @@ function validateStep2() {
 
 // ===== CONFIRMACIÓN =====
 function confirmBooking() {
-    // Validar
+    // Validate
     if (!bookingState.name || !bookingState.email || !bookingState.phone) {
-        alert('Por favor completa todos los campos requeridos');
+        alert('Please complete all required fields');
         return;
     }
 
     if (!document.getElementById('terms').checked) {
-        alert('Debes aceptar los términos y condiciones');
+        alert('You must accept the terms and conditions');
         return;
     }
 
@@ -355,15 +355,15 @@ function sendConfirmationEmail(reservation) {
         email: reservation.email
     };
 
-    console.log('Enviando email con parámetros:', templateParams);
+    console.log('Sending email with parameters:', templateParams);
 
     emailjs.send('service_vyagmxd', 'template_6zkb959', templateParams)
         .then(function(response) {
-            console.log('✅ Email enviado exitosamente:', response);
-            alert('✅ Email de confirmación enviado a ' + reservation.email);
+            console.log('✅ Email sent successfully:', response);
+            alert('✅ Confirmation email sent to ' + reservation.email);
         }, function(error) {
-            console.log('❌ Error al enviar email:', error);
-            alert('⚠️ Cita confirmada pero hubo un error al enviar el email. Puedes revisarlo después.');
+            console.log('❌ Error sending email:', error);
+            alert('⚠️ Appointment confirmed but there was an error sending the email. You can check it later.');
         });
 }
 
@@ -382,9 +382,9 @@ function showConfirmation(reservation) {
 
     goToStep(4);
 
-    // Simular envío de email
-    console.log('📧 Email enviado a:', reservation.email);
-    console.log('Detalles de la reserva:', reservation);
+    // Simulate email sending
+    console.log('📧 Email sent to:', reservation.email);
+    console.log('Booking details:', reservation);
 }
 
 function formatDateDisplay(dateStr) {
@@ -408,26 +408,26 @@ function selectDoctorSpecialty(specialty) {
     goToStep(1);
 }
 
-// ===== CONFIRMAR POR WHATSAPP =====
+// ===== CONFIRM VIA WHATSAPP =====
 function confirmViaWhatsApp() {
-    // Validar campos
+    // Validate fields
     if (!bookingState.name || !bookingState.email || !bookingState.phone) {
-        alert('Por favor completa todos los campos requeridos');
+        alert('Please complete all required fields');
         return;
     }
 
-    // Construir mensaje
-    const message = `Hola, me gustaría confirmar mi cita médica:\n\n` +
-        `👤 Nombre: ${bookingState.name}\n` +
-        `🏥 Centro: ${bookingState.center}\n` +
-        `👨‍⚕️ Especialista: ${bookingState.specialist}\n` +
-        `📅 Fecha: ${formatDateDisplay(bookingState.date)}\n` +
-        `⏰ Hora: ${bookingState.time}\n` +
-        `💰 Precio: $${bookingState.price}\n` +
+    // Build message
+    const message = `Hello, I would like to confirm my medical appointment:\n\n` +
+        `👤 Name: ${bookingState.name}\n` +
+        `🏥 Center: ${bookingState.center}\n` +
+        `👨‍⚕️ Specialist: ${bookingState.specialist}\n` +
+        `📅 Date: ${formatDateDisplay(bookingState.date)}\n` +
+        `⏰ Time: ${bookingState.time}\n` +
+        `💰 Price: $${bookingState.price}\n` +
         `📧 Email: ${bookingState.email}\n` +
-        `📱 Teléfono: ${bookingState.phone}\n` +
-        (bookingState.notes ? `📝 Notas: ${bookingState.notes}\n` : '') +
-        `\nPor favor confirmar mi cita.`;
+        `📱 Phone: ${bookingState.phone}\n` +
+        (bookingState.notes ? `📝 Notes: ${bookingState.notes}\n` : '') +
+        `\nPlease confirm my appointment.`;
 
     // Número de WhatsApp (reemplazar con el real)
     const phoneNumber = '56912345678'; // Formato: país (56) + número sin el 9 inicial
