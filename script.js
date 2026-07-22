@@ -258,12 +258,19 @@ function updateBookingState(e) {
 }
 
 function updateSummary() {
-    const service = bookingState.specialist || '-';
-    document.getElementById('summary-service').textContent = service;
-    document.getElementById('summary-price').textContent = bookingState.price ? `$${bookingState.price}` : '$0';
-    document.getElementById('summary-date').textContent = bookingState.date || '-';
-    document.getElementById('summary-time').textContent = bookingState.time || '-';
-    document.getElementById('summary-total').textContent = bookingState.price ? `$${bookingState.price}` : '$0';
+    // Los elementos del resumen fueron reemplazados por horarios
+    // Solo actualizar si existen para no causar errores
+    const summaryService = document.getElementById('summary-service');
+    const summaryPrice = document.getElementById('summary-price');
+    const summaryDate = document.getElementById('summary-date');
+    const summaryTime = document.getElementById('summary-time');
+    const summaryTotal = document.getElementById('summary-total');
+
+    if (summaryService) summaryService.textContent = bookingState.specialist || '-';
+    if (summaryPrice) summaryPrice.textContent = bookingState.price ? `$${bookingState.price}` : '$0';
+    if (summaryDate) summaryDate.textContent = bookingState.date || '-';
+    if (summaryTime) summaryTime.textContent = bookingState.time || '-';
+    if (summaryTotal) summaryTotal.textContent = bookingState.price ? `$${bookingState.price}` : '$0';
 }
 
 // ===== NAVEGACIÓN ENTRE PASOS =====
