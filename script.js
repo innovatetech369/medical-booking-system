@@ -102,8 +102,6 @@ function validateStep1() {
     const center = centerElement.value;
     const specialist = specialistElement.value;
 
-    console.log('Validating Step 1:', { center, specialist });
-
     if (center && specialist) {
         bookingState.center = center;
         bookingState.specialist = specialist;
@@ -112,11 +110,8 @@ function validateStep1() {
         const selectedOption = specialistElement.options[specialistElement.selectedIndex];
         bookingState.price = parseFloat(selectedOption.dataset.price) || 80;
 
-        console.log('Step 1 valid:', bookingState);
-        updateSummary();
         button.disabled = false;
     } else {
-        console.log('Step 1 incomplete');
         button.disabled = true;
     }
 }
