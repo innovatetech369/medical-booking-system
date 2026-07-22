@@ -373,7 +373,7 @@ function sendConfirmationEmail(reservation) {
 
     console.log('Sending email with parameters:', templateParams);
 
-    emailjs.send('service_vyagmxd', 'template_6zkb959', templateParams)
+    emailjs.send('service_ygagmxc', 'template_6zkb959', templateParams)
         .then(function(response) {
             console.log('✅ Email sent successfully!');
             console.log('Status:', response.status);
