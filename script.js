@@ -335,8 +335,32 @@ function confirmBooking() {
     reservedTimes[bookingState.date].push(bookingState.time);
     localStorage.setItem('reservedTimes', JSON.stringify(reservedTimes));
 
+    // Enviar email con EmailJS
+    sendConfirmationEmail(reservation);
+
     // Mostrar confirmación
     showConfirmation(reservation);
+}
+
+// ===== ENVIAR EMAIL CON EMAILJS =====
+function sendConfirmationEmail(reservation) {
+    const templateParams = {
+        to_email: reservation.email,
+        name: reservation.name,
+        center: reservation.center,
+        specialist: reservation.specialist,
+        date: formatDateDisplay(reservation.date),
+        time: reservation.time,
+        price: reservation.price,
+        confirmationCode: reservation.id
+    };
+
+    emailjs.send('service_vyagmxd', 'template_6zkb959', templateParams)
+        .then(function(response) {
+            console.log('Email enviado exitosamente:', response.status, response.text);
+        }, function(error) {
+            console.log('Error al enviar email:', error);
+        });
 }
 
 function generateConfirmationCode() {
@@ -425,6 +449,9 @@ function confirmViaWhatsApp() {
     let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
     reservations.push(reservation);
     localStorage.setItem('reservations', JSON.stringify(reservations));
+
+    // Enviar email con EmailJS
+    sendConfirmationEmail(reservation);
 
     // Redirigir a WhatsApp
     window.open(whatsappURL, '_blank');
