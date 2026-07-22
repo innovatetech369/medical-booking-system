@@ -330,10 +330,12 @@
         <p>🏥 Medical Booking System © 2026 | Easy Online Appointment Scheduling</p>
     </footer>
 
-    <script src="emailjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         // Initialize EmailJS with Public Key
-        emailjs.init('L1GjAQJK8Npc3nPnq');
+        (function() {
+            emailjs.init('L1GjAQJK8Npc3nPnq');
+        })();
     </script>
     <script src="script.js"></script>
 </body>
