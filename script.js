@@ -398,7 +398,6 @@ function confirmBooking() {
 // ===== ENVIAR EMAIL CON EMAILJS =====
 function sendConfirmationEmail(reservation) {
     const templateParams = {
-        to_email: reservation.email,
         name: reservation.name,
         center: reservation.center,
         specialist: reservation.specialist,
