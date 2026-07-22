@@ -375,14 +375,16 @@ function sendConfirmationEmail(reservation) {
 
     emailjs.send('service_vyagmxd', 'template_6zkb959', templateParams)
         .then(function(response) {
-            console.log('✅ Email sent successfully:', response.status, response.text);
+            console.log('✅ Email sent successfully!');
+            console.log('Status:', response.status);
+            console.log('Text:', response.text);
             alert('✅ Confirmation email sent to ' + reservation.email);
         })
         .catch(function(error) {
-            console.error('❌ Error sending email - Status:', error.status);
-            console.error('❌ Error message:', error.text);
-            console.error('❌ Full error:', error);
-            alert('⚠️ Appointment confirmed but email error: ' + (error.text || error.message));
+            console.error('❌ Error en EmailJS:', error);
+            console.log('Detalle del error:', error.text);
+            console.log('Status:', error.status);
+            alert('⚠️ Cita confirmada pero hubo error en email: ' + (error.text || 'Ver consola'));
         });
 }
 
