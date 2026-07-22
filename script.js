@@ -21,6 +21,35 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCalendar();
 });
 
+// ===== FUNCIONES DEL NAVBAR =====
+function openTelemedicina() {
+    // Scroll a la sección de reserva
+    document.getElementById('step-1').scrollIntoView({ behavior: 'smooth' });
+    goToStep(1);
+}
+
+function showMyBookings() {
+    // Obtener reservas del localStorage
+    const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+
+    if (reservations.length === 0) {
+        alert('No tienes citas agendadas aún.');
+        return;
+    }
+
+    // Crear lista de citas
+    let bookingsList = '📅 MIS CITAS AGENDADAS\n\n';
+    reservations.forEach((res, index) => {
+        bookingsList += `${index + 1}. ${res.specialist || res.service}\n`;
+        bookingsList += `   Fecha: ${res.date}\n`;
+        bookingsList += `   Hora: ${res.time}\n`;
+        bookingsList += `   Código: ${res.id}\n`;
+        bookingsList += `   Estado: ${res.status}\n\n`;
+    });
+
+    alert(bookingsList);
+}
+
 // ===== GESTIÓN DE CENTRO Y ESPECIALISTA =====
 function attachEventListeners() {
     // Centro y Especialista
