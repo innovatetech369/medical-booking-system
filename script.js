@@ -1,10 +1,40 @@
+// ===== CONSOLE CONFIG FUNCTIONS =====
+window.setEmailJSConfig = function(publicKey, serviceId, templateId) {
+    window.EMAILJS_CONFIG = {
+        PUBLIC_KEY: publicKey,
+        SERVICE_ID: serviceId,
+        TEMPLATE_ID: templateId
+    };
+    localStorage.setItem('emailjs_config', JSON.stringify(window.EMAILJS_CONFIG));
+    emailjs.init(publicKey);
+    console.log('✅ EmailJS configurado con éxito!');
+    console.log('📊 Config guardada en localStorage');
+    console.log(window.EMAILJS_CONFIG);
+};
+
+window.getEmailJSConfig = function() {
+    console.log('📋 Configuración actual:');
+    console.log(window.EMAILJS_CONFIG);
+};
+
 // ===== EMAILJS INITIALIZATION =====
-// Usa las credenciales de config.js
-if (window.EMAILJS_CONFIG) {
-    emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
-    console.log('✅ EmailJS initialized with config');
+// Intenta cargar desde localStorage primero
+let savedConfig = localStorage.getItem('emailjs_config');
+if (savedConfig) {
+    window.EMAILJS_CONFIG = JSON.parse(savedConfig);
+    console.log('✅ Config cargada desde localStorage');
+} else if (window.EMAILJS_CONFIG) {
+    console.log('✅ Config cargada desde config.js');
 } else {
-    console.error('❌ Config file not loaded');
+    console.warn('⚠️ No hay configuración. Usa window.setEmailJSConfig(publicKey, serviceId, templateId)');
+}
+
+// Inicializar EmailJS
+if (window.EMAILJS_CONFIG && window.EMAILJS_CONFIG.PUBLIC_KEY) {
+    emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
+    console.log('✅ EmailJS inicializado');
+} else {
+    console.error('❌ Public Key no encontrada. Configura primero con window.setEmailJSConfig()');
 }
 
 // ===== SECURITY FUNCTIONS =====
