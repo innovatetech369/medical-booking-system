@@ -20,7 +20,7 @@
             </div>
             <div class="logo"></div>
             <div class="nav-links">
-                <a href="#" onclick="openTelemedicina(); return false;" class="nav-link">Telemedicine</a>
+                <a href="#" onclick="showAboutUs(); return false;" class="nav-link">About Us</a>
                 <a href="#" onclick="showMyBookings(); return false;" class="nav-link">My Bookings</a>
             </div>
         </div>
@@ -37,6 +37,64 @@
 
     <!-- MAIN CONTAINER -->
     <main class="container">
+        <!-- ABOUT US SECTION -->
+        <div id="about-us-section" class="about-us" style="display: none;">
+            <div class="about-content">
+                <h2>About InnovateTech Medical Center</h2>
+
+                <div class="about-intro">
+                    <p>Founded in 2015, InnovateTech Medical Center is a leading healthcare provider committed to delivering exceptional medical services with cutting-edge technology and compassionate care.</p>
+                </div>
+
+                <div class="about-features">
+                    <div class="feature-card">
+                        <h3>🏆 Our Mission</h3>
+                        <p>To provide world-class medical care and innovative healthcare solutions that improve the quality of life for our patients and communities.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>👥 Our Team</h3>
+                        <p>Over 150 highly trained medical professionals including board-certified doctors, nurses, and specialists dedicated to patient excellence.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🏥 Facilities</h3>
+                        <p>State-of-the-art medical equipment, modern surgical suites, and comfortable patient rooms equipped with the latest technology.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌍 Accreditation</h3>
+                        <p>JCI accredited and ISO certified, meeting international standards for healthcare quality and patient safety.</p>
+                    </div>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat">
+                        <h4>50,000+</h4>
+                        <p>Patients Served Annually</p>
+                    </div>
+                    <div class="stat">
+                        <h4>150+</h4>
+                        <p>Medical Professionals</p>
+                    </div>
+                    <div class="stat">
+                        <h4>24/7</h4>
+                        <p>Emergency Services</p>
+                    </div>
+                    <div class="stat">
+                        <h4>98%</h4>
+                        <p>Patient Satisfaction</p>
+                    </div>
+                </div>
+
+                <div class="about-contact">
+                    <h3>Contact Us</h3>
+                    <p>📞 Phone: +1-800-MEDICAL-1</p>
+                    <p>📧 Email: info@innovatetech.com</p>
+                    <p>📍 Headquarters: 123 Medical Avenue, Health City, HC 12345</p>
+                </div>
+
+                <button class="btn btn-primary btn-large" onclick="backToBooking()">Back to Booking</button>
+            </div>
+        </div>
+
         <div class="booking-wrapper">
             <!-- STEP 1: SELECT CENTER AND SPECIALIST -->
             <div class="booking-section active" id="step-1">

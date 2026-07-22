@@ -21,11 +21,27 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCalendar();
 });
 
-// ===== FUNCIONES DEL NAVBAR =====
-function openTelemedicina() {
-    // Scroll to booking section
-    document.getElementById('step-1').scrollIntoView({ behavior: 'smooth' });
-    goToStep(1);
+// ===== NAVBAR FUNCTIONS =====
+function showAboutUs() {
+    // Hide booking wrapper and show about us
+    document.querySelector('.booking-wrapper').style.display = 'none';
+    document.querySelector('.doctors-section').style.display = 'none';
+    document.querySelector('.booking-summary').style.display = 'none';
+    document.getElementById('about-us-section').style.display = 'block';
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function backToBooking() {
+    // Show booking wrapper and hide about us
+    document.querySelector('.booking-wrapper').style.display = 'block';
+    document.querySelector('.doctors-section').style.display = 'block';
+    document.querySelector('.booking-summary').style.display = 'block';
+    document.getElementById('about-us-section').style.display = 'none';
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showMyBookings() {

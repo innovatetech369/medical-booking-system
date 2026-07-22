@@ -674,6 +674,99 @@ body {
     font-size: 1rem;
 }
 
+/* ===== ABOUT US SECTION ===== */
+.about-us {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.about-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.about-intro {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.feature-card {
+    background: var(--bg-light);
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid var(--secondary-color);
+    text-align: center;
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.feature-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+}
+
+.stat h4 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.stat p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.about-contact {
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.about-contact h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about-contact p {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+}
+
 /* ===== SECCIÓN DOCTORES ===== */
 .doctors-section {
     background: white;
