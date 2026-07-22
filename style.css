@@ -446,10 +446,18 @@ body {
     min-height: 100px;
 }
 
+input[type="checkbox"] {
+    margin-right: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 .checkbox-label {
     display: inline;
-    margin-left: 8px;
+    margin-left: 0;
     font-weight: normal;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
 /* ===== CONFIRMACIÓN ===== */
