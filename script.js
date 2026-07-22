@@ -321,6 +321,21 @@ function formatDateDisplay(dateStr) {
     return date.toLocaleDateString('es-ES', options);
 }
 
+// ===== SELECCIONAR ESPECIALIDAD POR DOCTOR =====
+function selectDoctorSpecialty(specialty) {
+    // Scroll al formulario
+    document.getElementById('step-1').scrollIntoView({ behavior: 'smooth' });
+
+    // Seleccionar la especialidad
+    document.getElementById('specialist').value = specialty;
+
+    // Validar y actualizar
+    validateStep1();
+
+    // Mostrar Step 1
+    goToStep(1);
+}
+
 // ===== CONFIRMAR POR WHATSAPP =====
 function confirmViaWhatsApp() {
     // Validar campos
