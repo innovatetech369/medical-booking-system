@@ -1,3 +1,25 @@
+// ===== SECURITY FUNCTIONS =====
+function sanitizeInput(input) {
+    if (typeof input !== 'string') return '';
+    return input.trim().replace(/[<>\"']/g, '');
+}
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validatePhone(phone) {
+    const phoneRegex = /^[\d\s\-\+\(\)]{7,}$/;
+    return phoneRegex.test(phone);
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 // ===== STATE GLOBAL =====
 let bookingState = {
     center: null,
@@ -302,38 +324,54 @@ function validateStep2() {
 
 // ===== CONFIRMACIÓN =====
 function confirmBooking() {
-    console.log('confirmBooking called, bookingState:', bookingState);
-
-    // Validate
+    // Validate required fields
     if (!bookingState.name || !bookingState.email || !bookingState.phone) {
-        console.log('Missing fields - name:', bookingState.name, 'email:', bookingState.email, 'phone:', bookingState.phone);
         alert('Please complete all required fields');
         return;
     }
 
+    // Sanitize and validate email
+    const sanitizedEmail = sanitizeInput(bookingState.email);
+    if (!validateEmail(sanitizedEmail)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+
+    // Sanitize and validate phone
+    const sanitizedPhone = sanitizeInput(bookingState.phone);
+    if (!validatePhone(sanitizedPhone)) {
+        alert('Please enter a valid phone number');
+        return;
+    }
+
+    // Sanitize name
+    const sanitizedName = sanitizeInput(bookingState.name);
+    if (sanitizedName.length < 2 || sanitizedName.length > 100) {
+        alert('Name must be between 2 and 100 characters');
+        return;
+    }
+
+    // Check terms
     if (!document.getElementById('terms').checked) {
-        console.log('Terms not checked');
         alert('You must accept the terms and conditions');
         return;
     }
 
-    console.log('Validation passed, creating reservation...');
-
     // Generar código de confirmación
     const confirmationCode = generateConfirmationCode();
 
-    // Guardar reserva
+    // Guardar reserva con datos sanitizados
     const reservation = {
         id: confirmationCode,
-        center: bookingState.center,
-        specialist: bookingState.specialist,
-        date: bookingState.date,
-        time: bookingState.time,
-        name: bookingState.name,
-        email: bookingState.email,
-        phone: bookingState.phone,
-        notes: bookingState.notes,
-        price: bookingState.price,
+        center: sanitizeInput(bookingState.center),
+        specialist: sanitizeInput(bookingState.specialist),
+        date: bookingState.date, // Ya validado en el calendario
+        time: bookingState.time, // Ya validado en el selector
+        name: sanitizedName,
+        email: sanitizedEmail,
+        phone: sanitizedPhone,
+        notes: sanitizeInput(bookingState.notes || ''),
+        price: parseFloat(bookingState.price) || 0,
         status: 'confirmed',
         createdAt: new Date().toISOString()
     };
