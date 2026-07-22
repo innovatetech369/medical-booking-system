@@ -16,9 +16,8 @@ let reservedTimes = JSON.parse(localStorage.getItem('reservedTimes')) || {};
 
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', () => {
-    initializeCalendar();
     attachEventListeners();
-    renderCalendar();
+    initializeCalendar();
 });
 
 // ===== NAVBAR FUNCTIONS =====
