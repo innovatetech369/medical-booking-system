@@ -572,7 +572,7 @@ body {
     box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
 }
 
-/* ===== RESUMEN FLOTANTE ===== */
+/* ===== RESUMEN Y HORARIOS ===== */
 .booking-summary {
     background: white;
     border-radius: 15px;
@@ -612,6 +612,34 @@ body {
     font-weight: bold;
     color: var(--primary-color);
     border: none;
+}
+
+/* Estilos para horarios */
+.hours-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.hours-item {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background: var(--bg-light);
+    border-radius: 10px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.hours-item strong {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.hours-item span {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 /* ===== FOOTER ===== */
