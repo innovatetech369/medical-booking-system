@@ -71,7 +71,7 @@ body {
 /* ===== HERO SECTION ===== */
 .hero {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%),
-                url('hospital-bg.webp') center/cover no-repeat;
+                url('hospital-bg.jpg') center/cover no-repeat;
     color: white;
     padding: 80px 20px;
     text-align: center;
