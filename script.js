@@ -308,16 +308,22 @@ function validateStep2() {
 
 // ===== CONFIRMACIÓN =====
 function confirmBooking() {
+    console.log('confirmBooking called, bookingState:', bookingState);
+
     // Validate
     if (!bookingState.name || !bookingState.email || !bookingState.phone) {
+        console.log('Missing fields - name:', bookingState.name, 'email:', bookingState.email, 'phone:', bookingState.phone);
         alert('Please complete all required fields');
         return;
     }
 
     if (!document.getElementById('terms').checked) {
+        console.log('Terms not checked');
         alert('You must accept the terms and conditions');
         return;
     }
+
+    console.log('Validation passed, creating reservation...');
 
     // Generar código de confirmación
     const confirmationCode = generateConfirmationCode();
@@ -387,6 +393,7 @@ function generateConfirmationCode() {
 }
 
 function showConfirmation(reservation) {
+    console.log('showConfirmation called with:', reservation);
     document.getElementById('conf-service').textContent = reservation.specialist || '-';
     document.getElementById('conf-date').textContent = formatDateDisplay(reservation.date);
     document.getElementById('conf-time').textContent = reservation.time;
@@ -396,6 +403,7 @@ function showConfirmation(reservation) {
     document.getElementById('conf-code').textContent = reservation.id;
 
     goToStep(4);
+    console.log('✅ Confirmation page displayed');
 
     // Simulate email sending
     console.log('📧 Email sent to:', reservation.email);
