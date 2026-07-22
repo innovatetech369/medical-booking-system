@@ -378,8 +378,10 @@ function sendConfirmationEmail(reservation) {
             alert('✅ Confirmation email sent to ' + reservation.email);
         })
         .catch(function(error) {
-            console.error('❌ Error sending email:', error);
-            alert('⚠️ Appointment confirmed but there was an error sending the email. You can check it later.');
+            console.error('❌ Error sending email - Status:', error.status);
+            console.error('❌ Error message:', error.text);
+            console.error('❌ Full error:', error);
+            alert('⚠️ Appointment confirmed but email error: ' + (error.text || error.message));
         });
 }
 
