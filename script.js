@@ -1,3 +1,11 @@
+// ===== EMAILJS INITIALIZATION =====
+if (typeof emailjs !== 'undefined') {
+    emailjs.init('L1GjAQJK8Npc3nPnq');
+    console.log('✅ EmailJS initialized');
+} else {
+    console.error('❌ EmailJS library not loaded');
+}
+
 // ===== STATE GLOBAL =====
 let bookingState = {
     center: null,
