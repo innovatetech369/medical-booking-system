@@ -345,21 +345,25 @@ function confirmBooking() {
 // ===== ENVIAR EMAIL CON EMAILJS =====
 function sendConfirmationEmail(reservation) {
     const templateParams = {
-        to_email: reservation.email,
         name: reservation.name,
         center: reservation.center,
         specialist: reservation.specialist,
         date: formatDateDisplay(reservation.date),
         time: reservation.time,
         price: reservation.price,
-        confirmationCode: reservation.id
+        confirmationCode: reservation.id,
+        email: reservation.email
     };
+
+    console.log('Enviando email con parámetros:', templateParams);
 
     emailjs.send('service_vyagmxd', 'template_6zkb959', templateParams)
         .then(function(response) {
-            console.log('Email enviado exitosamente:', response.status, response.text);
+            console.log('✅ Email enviado exitosamente:', response);
+            alert('✅ Email de confirmación enviado a ' + reservation.email);
         }, function(error) {
-            console.log('Error al enviar email:', error);
+            console.log('❌ Error al enviar email:', error);
+            alert('⚠️ Cita confirmada pero hubo un error al enviar el email. Puedes revisarlo después.');
         });
 }
 
