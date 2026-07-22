@@ -350,11 +350,11 @@ function confirmBooking() {
     reservedTimes[bookingState.date].push(bookingState.time);
     localStorage.setItem('reservedTimes', JSON.stringify(reservedTimes));
 
-    // Enviar email con EmailJS
-    sendConfirmationEmail(reservation);
-
-    // Mostrar confirmación
+    // Mostrar confirmación PRIMERO
     showConfirmation(reservation);
+
+    // Enviar email con EmailJS (después, no bloquea)
+    setTimeout(() => sendConfirmationEmail(reservation), 500);
 }
 
 // ===== ENVIAR EMAIL CON EMAILJS =====
