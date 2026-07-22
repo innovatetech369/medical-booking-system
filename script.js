@@ -86,7 +86,6 @@ function attachEventListeners() {
     // Navegación Paso 3
     document.getElementById('btn-back-3').addEventListener('click', () => goToStep(2));
     document.getElementById('btn-confirm').addEventListener('click', confirmBooking);
-    document.getElementById('btn-whatsapp-confirm').addEventListener('click', confirmViaWhatsApp);
 
     // Formulario
     document.getElementById('name').addEventListener('input', updateBookingState);
