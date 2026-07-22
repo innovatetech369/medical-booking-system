@@ -37,7 +37,7 @@
                 <div class="medical-form">
                     <div class="form-group">
                         <label for="center">🏥 Centro Médico *</label>
-                        <select id="center" required onchange="updateBooking()">
+                        <select id="center" required onchange="validateStep1()">
                             <option value="">Selecciona un centro</option>
                             <option value="Centro Médico" data-price="80">Centro Médico</option>
                             <option value="Centro Médico Av Plaza" data-price="80">Centro Médico Av Plaza</option>
@@ -47,7 +47,7 @@
 
                     <div class="form-group">
                         <label for="specialist">👨‍⚕️ Especialista *</label>
-                        <select id="specialist" required onchange="updateBooking()">
+                        <select id="specialist" required onchange="validateStep1()">
                             <option value="">Selecciona especialista</option>
                             <option value="Oftalmología" data-price="85">Oftalmología</option>
                             <option value="Neurología" data-price="95">Neurología</option>
