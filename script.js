@@ -1,5 +1,11 @@
 // ===== EMAILJS INITIALIZATION =====
-emailjs.init('L1GjAQjK8Npc3nPnq');
+// Usa las credenciales de config.js
+if (window.EMAILJS_CONFIG) {
+    emailjs.init(window.EMAILJS_CONFIG.PUBLIC_KEY);
+    console.log('✅ EmailJS initialized with config');
+} else {
+    console.error('❌ Config file not loaded');
+}
 
 // ===== SECURITY FUNCTIONS =====
 function sanitizeInput(input) {
@@ -413,7 +419,7 @@ function sendConfirmationEmail(reservation) {
 
     console.log('Sending email with parameters:', templateParams);
 
-    emailjs.send('service_ygagmxc', 'template_6zkb959', templateParams)
+    emailjs.send(window.EMAILJS_CONFIG.SERVICE_ID, window.EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
         .then(function(response) {
             console.log('✅ Email sent successfully!');
             console.log('Status:', response.status);
