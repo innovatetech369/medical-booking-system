@@ -1,14 +1,14 @@
 /* ===== VARIABLES Y RESET ===== */
 :root {
-    --primary-color: #4CAF50;
-    --secondary-color: #2196F3;
-    --accent-color: #FF6B6B;
+    --primary-color: #2E7D32;
+    --secondary-color: #1565C0;
+    --accent-color: #C62828;
     --bg-light: #f5f5f5;
     --bg-white: #ffffff;
-    --text-dark: #333333;
-    --text-light: #666666;
-    --border-color: #e0e0e0;
-    --success-color: #4CAF50;
+    --text-dark: #1a1a1a;
+    --text-light: #424242;
+    --border-color: #d0d0d0;
+    --success-color: #2E7D32;
     --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
